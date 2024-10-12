@@ -1,4 +1,4 @@
-# Single Linked List
+# Double Linked List
 
 
 class Node:
