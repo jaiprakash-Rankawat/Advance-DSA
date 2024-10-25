@@ -1,4 +1,4 @@
-# Double Linked List
+# double Linked List
 
 
 class Node:
@@ -17,37 +17,58 @@ class LinkedList:
         if self.head is None:
             self.head = newNode
             return
-        last = self.head
-        while last.next:
-            last = last.next
-        last.next = newNode
-        newNode.prev = last
+        temp = self.head
+        while temp.next:
+            temp = temp.next
+        temp.next = newNode
+        newNode.prev = temp
 
     def insertAtStart(self, element):
         newNode = Node(element)
+        # data = element, next = None , prev = None
         newNode.next = self.head
-        self.head.prev = newNode
+        if self.head:
+            self.head.prev = newNode
         self.head = newNode
 
     def display(self):
-        info = self.head
-        while info:
-            print(f"{info.data} <--> ", end=" ")
-            info = info.next
+        temp = self.head
+        while temp:
+            print(f"{temp.data} <-->", end=" ")
+            temp = temp.next
         print("None")
 
-    def delete(self, element):
+    def Update(self, element, replace):
+        temp = self.head
         if self.head is None:
-            print("Linked list is empty")
+            print("Linked List is Empty !")
+        elif self.head is not None:
+            while temp:  # temp is Not None
+                if temp.data == element:
+                    temp.data = replace
+                    break
+                temp = temp.next
+            else:
+                print(f"{element} Not found")
+
+    def delete(self, element):
+        # element = 30
+        if self.head is None:
+            print("linked list is empty")
             return
+
         if self.head.data == element:
             self.head = self.head.next
             if self.head:
                 self.head.prev = None
             return
+
         temp = self.head
+        # 10 <--> 20 <--> 30 <--> 40 <--> None
+
         while temp and temp.data != element:
             temp = temp.next
+            # temp.next.next =30 <--> 40 <--> None
         if temp:
             if temp.next:
                 temp.next.prev = temp.prev
@@ -56,47 +77,27 @@ class LinkedList:
             return
         print(f"{element} Not found")
 
-    def update(self, element, replace):
-        if self.head is None:
-            print("Linked List is Empty")
-            return
-        if self.head.data == element:
-            self.head.data = replace
-            return
-        info = self.head
-        while info:
-            if info.data == element:
-                info.data = replace
-                return
-            info = info.next
-        print(f"{element} Not Found")
-
-    def insertByIndex(self, element, index):
+    def insertByIndex(self, index, element):
         newNode = Node(element)
         if index == 0:
             newNode.next = self.head
-            if self.head:
-                self.head.prev = newNode
             self.head = newNode
             return
         temp = self.head
         current_index = 0
+
         while temp and current_index < index - 1:
             temp = temp.next
             current_index += 1
+
         if temp:
             newNode.next = temp.next
-            newNode.prev = temp
-            if temp.next:
-                temp.next.prev = newNode
             temp.next = newNode
-
             return
-        print("Index out of Range !")
+        print("Out of index")
 
-    def info(self):
-        print(self.head.next.next.data)
-        print(self.head.next.next.next.prev.data)
+    # def info(self):
+    # print(self.head.next.next.prev.next.prev.next.prev.next.prev.data)
 
 
 obj = LinkedList()
@@ -104,6 +105,12 @@ obj.insert(10)
 obj.insert(20)
 obj.insert(30)
 obj.insert(40)
-obj.insertByIndex("Radha", 2)
+obj.delete(30)
 obj.display()
-obj.info()
+# obj.info()
+
+
+# single linked list
+# double linked list
+# circuler linked list (single linked list)
+# circuler linked list (double linked list)

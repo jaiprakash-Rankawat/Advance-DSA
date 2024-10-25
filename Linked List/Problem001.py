@@ -1,4 +1,4 @@
-# Single Linked List
+# Linked list
 
 
 class Node:
@@ -16,10 +16,10 @@ class LinkedList:
         if self.head is None:
             self.head = newNode
             return
-        last = self.head
-        while last.next:
-            last = last.next
-        last.next = newNode
+        temp = self.head
+        while temp.next:
+            temp = temp.next
+        temp.next = newNode
 
     def insertAtStart(self, element):
         newNode = Node(element)
@@ -27,45 +27,57 @@ class LinkedList:
         self.head = newNode
 
     def display(self):
-        info = self.head
-        while info:
-            print(f"{info.data} -> ", end=" ")
-            info = info.next
+        temp = self.head
+        while temp:
+            print(f"{temp.data} ->", end=" ")
+            temp = temp.next
         print("None")
+
+    # def Update(self, element, replace):
+    #     if self.head is None:
+    #         print("Linked List is Empty !")
+    #         return
+    #     temp = self.head
+    #     while temp:  # temp is Not None
+    #         if temp.data == element:
+    #             temp.data = replace
+    #             return
+    #         temp = temp.next
+    #     print(f"{element} Not found")
+    def Update(self, element, replace):
+        temp = self.head
+        if self.head is None:
+            print("Linked List is Empty !")
+        elif self.head is not None:
+            while temp:  # temp is Not None
+                if temp.data == element:
+                    temp.data = replace
+                    break
+                temp = temp.next
+            else:
+                print(f"{element} Not found")
 
     def delete(self, element):
         if self.head is None:
-            print("Linked List is Empty")
+            print("linked list is empty")
             return
+
         if self.head.data == element:
             self.head = self.head.next
             return
+
         temp = self.head
         prev = None
+
         while temp and temp.data != element:
             prev = temp
             temp = temp.next
         if temp:
             prev.next = temp.next
             return
-        print(f"{element} Not found !")
+        print(f"{element} Not found")
 
-    def update(self, element, replace):
-        if self.head is None:
-            print("Linked List is Empty")
-            return
-        if self.head.data == element:
-            self.head.data = replace
-            return
-        info = self.head
-        while info:
-            if info.data == element:
-                info.data = replace
-                return
-            info = info.next
-        print(f"{element} Not Found")
-
-    def insertByIndex(self, element, index):
+    def insertByIndex(self, index, element):
         newNode = Node(element)
         if index == 0:
             newNode.next = self.head
@@ -73,22 +85,27 @@ class LinkedList:
             return
         temp = self.head
         current_index = 0
+
         while temp and current_index < index - 1:
             temp = temp.next
             current_index += 1
+
         if temp:
             newNode.next = temp.next
             temp.next = newNode
             return
-        print("Index out of Range !")
+        print("Out of index")
 
 
 obj = LinkedList()
 obj.insert(10)
 obj.insert(20)
-obj.insert(3)
-obj.insertAtStart("Radha")
-obj.delete(20)
-obj.insertByIndex("Krishna", 1)
-obj.update(3, 30)
+obj.insert(30)
+obj.insert(40)
 obj.display()
+
+
+# single linked list
+# double linked list
+# circuler linked list (single linked list)
+# circuler linked list (double linked list)
