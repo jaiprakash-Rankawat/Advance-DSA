@@ -80,34 +80,48 @@ class LinkedList:
     def insertByIndex(self, index, element):
         newNode = Node(element)
         if index == 0:
+
+            # self.head = None
+            if self.head is None:
+                self.head = newNode
+                return
+            # None <- 10 -> 20 -> 30 -> None
+            # newNode = data = "jd", next = 10 -> 20 -> 30 -> None , prev = None
             newNode.next = self.head
+            self.head.prev = newNode
             self.head = newNode
             return
-        temp = self.head
         current_index = 0
-
+        temp = self.head
+        # index = 2
+        # self.head = 10 - > 20 -> 30 -> None
         while temp and current_index < index - 1:
             temp = temp.next
+            # 20 -> 30 -> None
             current_index += 1
-
+            # current_index = 1
         if temp:
+            # newNode = data = radha , next = None , prev = None
             newNode.next = temp.next
-            temp.next = newNode
+            # radha -> 30 -> None
+            temp.next.prev = newNode
+            temp.prev.next = newNode
+            newNode.prev = temp.prev
+            self.head = newNode
             return
-        print("Out of index")
+        print("Index not found")
 
-    # def info(self):
-    # print(self.head.next.next.prev.next.prev.next.prev.next.prev.data)
+    def info(self):
+        print(self.head.next.prev.data)
 
 
 obj = LinkedList()
 obj.insert(10)
 obj.insert(20)
 obj.insert(30)
-obj.insert(40)
-obj.delete(30)
+obj.insertByIndex(2, "Radha")
 obj.display()
-# obj.info()
+obj.info()
 
 
 # single linked list
