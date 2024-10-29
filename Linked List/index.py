@@ -166,9 +166,11 @@ class LinkedList:
     def insertByIndex(self, element, index):
         newNode = Node(element)
         if index == 0:
+            if self.head is None:
+                self.head = newNode
+                return
             newNode.next = self.head
-            if self.head:
-                self.head.prev = newNode
+            self.head.prev = newNode
             self.head = newNode
             return
         temp = self.head
@@ -179,8 +181,10 @@ class LinkedList:
 
         if temp:
             newNode.next = temp.next
-            temp.next.prev = newNode
-            self.head = newNode
+            if temp.next:
+                temp.next.prev = newNode
+            temp.next = newNode
+            newNode.prev = temp
             return
         print("Index out of range")
 
@@ -190,5 +194,5 @@ obj.insert(10)
 obj.insert(20)
 obj.insert(30)
 obj.insertAtStart("Radha")
-obj.insertByIndex(0, "krishna")
+obj.insertByIndex("krishna", 3)
 obj.display()
