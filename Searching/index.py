@@ -12,6 +12,9 @@
 #             return
 #     print(f"{target} not found ")
 
+# time complexity = o(n)
+# space complexity = o(1)
+
 
 # array = [25, 15, 6, 4, 92, 45, 26]
 # target = 50
@@ -29,22 +32,25 @@
 # mid = (left + right)//2 #3
 
 
-def BinarySearch(array, target):
+# def BinarySearch(array, target):
 
-    left = 0
-    right = len(array) - 1
-    while left <= right:
-        mid = (left + right) // 2
-        if array[mid] == target:
-            print(f"{target} found")
-            return
-        elif array[mid] < target:
-            left = mid + 1
-        else:
-            right = mid - 1
-    print(f"{target} not found")
+#     left = 0
+#     right = len(array) - 1
+#     while left <= right:
+#         mid = (left + right) // 2
+#         if array[mid] == target:
+#             print(f"{target} found")
+#             return
+#         elif array[mid] < target:
+#             left = mid + 1
+#         else:
+#             right = mid - 1
+#     print(f"{target} not found")
 
 
-array = [10, 20, 30, 40, 50, 60, 70, 80]
-target = 30
-BinarySearch(array, target=15)
+# array = [10, 20, 30, 40, 50, 60, 70, 80]
+# target = 30
+# BinarySearch(array, target=15)
+
+# time complexity = o(logn)
+# space complexity = o(logn)
