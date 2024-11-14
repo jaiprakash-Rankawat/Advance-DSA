@@ -77,9 +77,12 @@ def MergeSort(array):
 
     # case2 : divide
     mid = len(array) // 2
+    mid = 2
+    mid = 1
     # 20, 10, 50, 40, 30
 
     left_half = MergeSort(array[:mid])
+    # call = 8
     right_half = MergeSort(array[mid:])
 
     return Merge(left_half, right_half)
@@ -103,3 +106,4 @@ def Merge(left, right):
 
 
 print(MergeSort([20, 10, 50, 40, 30]))
+# call = 1
